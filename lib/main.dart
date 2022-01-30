@@ -80,59 +80,54 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // decimal
-            SizedBox(
-              width: kTextWidth,
-              child: TextField(
-                autofocus: true, // default to decimal
-                controller: _decimalController,
-                onChanged: (String stringValue) {
-                  if (stringValue == '') {
-                    stringValue = '0';
-                  }
-                  int? value = int.tryParse(stringValue, radix: 10);
-                  if (value != null) {
-                    _updateFields(value, Radix.decimal);
-                  }
-                },
-              ),
+      body: Table(
+        border: TableBorder.all(), // TODO lift this so it's not repeatedly instantiated
+        children: <TableRow>[
+          const TableRow(children: <Widget>[
+            Text('Decimal'),
+            Text('Hexadecimal'),
+            Text('Binary'),
+          ]), // content
+          TableRow(children: <Widget>[
+            TextField(
+              autofocus: true, // default to decimal
+              controller: _decimalController,
+              onChanged: (String stringValue) {
+                if (stringValue == '') {
+                  stringValue = '0';
+                }
+                int? value = int.tryParse(stringValue, radix: 10);
+                if (value != null) {
+                  _updateFields(value, Radix.decimal);
+                }
+              },
             ),
-            SizedBox(
-              width: kTextWidth,
-              child: TextField(
-                controller: _hexadecimalController,
-                onChanged: (String stringValue) {
-                  if (stringValue == '') {
-                    stringValue = '0';
-                  }
-                  int? value = int.tryParse(stringValue, radix: 16);
-                  if (value != null) {
-                    _updateFields(value, Radix.hexadecimal);
-                  }
-                },
-              ),
+            TextField(
+              controller: _hexadecimalController,
+              onChanged: (String stringValue) {
+                if (stringValue == '') {
+                  stringValue = '0';
+                }
+                int? value = int.tryParse(stringValue, radix: 16);
+                if (value != null) {
+                  _updateFields(value, Radix.hexadecimal);
+                }
+              },
             ),
-            SizedBox(
-              width: kTextWidth,
-              child: TextField(
-                controller: _binaryController,
-                onChanged: (String stringValue) {
-                  if (stringValue == '') {
-                    stringValue = '0';
-                  }
-                  int? value = int.tryParse(stringValue, radix: 2);
-                  if (value != null) {
-                    _updateFields(value, Radix.binary);
-                  }
-                },
-              ),
+            TextField(
+              controller: _binaryController,
+              onChanged: (String stringValue) {
+                if (stringValue == '') {
+                  stringValue = '0';
+                }
+                int? value = int.tryParse(stringValue, radix: 2);
+                if (value != null) {
+                  _updateFields(value, Radix.binary);
+                }
+              },
             ),
-          ],
-        ),
+          ]),
+        ],
       ),
     );
   }
