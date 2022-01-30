@@ -72,7 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _decimalController = TextEditingController();
   final TextEditingController _hexadecimalController = TextEditingController();
   final TextEditingController _binaryController = TextEditingController();
-  static const double kTextWidth = 200;
 
   @override
   Widget build(BuildContext context) {
